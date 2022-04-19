@@ -5,10 +5,10 @@ const mysql = require('mysql');
 
 const pool = mysql.createPool({
     connectionLimit: "10", // the number of connections node.js will hold open to our database
-    password: "",
-    user: "root",
-    database: "moneyz",
-    host: "localhost",
+    password: "ATQomgkExx",
+    user: "YAaJDba4I2",
+    database: "YAaJDba4I2",
+    host: "remotemysql.com",
     port: "3306"
 
 });
@@ -161,7 +161,7 @@ db.updateHistory = (type, nominal, userId, idpenerima) => {
 
 db.getHistory = (userId) => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT type, id_penerima, amount FROM history WHERE id_user = ? ', [userId], (error, history) => {
+        pool.query('SELECT type, id_penerima, amount, timestamp FROM history WHERE id_user = ? ', [userId], (error, history) => {
             if (error) {
                 return reject(error);
             }
