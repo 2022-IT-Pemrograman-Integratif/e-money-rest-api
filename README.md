@@ -12,7 +12,7 @@ Dokumentasi API dari MoneyZ dapat diakses [di sini](https://docs.google.com/docu
 
 ### register
   * Method : `POST`
-  * Alamat URL : 
+  * Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/register
   * Parameter :
 
 | Parameter | Description |
