@@ -137,5 +137,85 @@ Parameter
 
 Respon
 
+### transfer
+
+* Method : `POST`
+* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/user/transfer/:id
+* Parameter
+
+| Parameter | Description | Optional | Default | 
+| ----------- | ----------- | ----------- | ----------- |
+| id | Berupa nomor id internal yang menjadi identitas dari data terkait | Tidak | |
+| idtujuan | Berupa nomor id tujuan yang menjadi identitas dari data terkait. perlu diisi apabila ingin melakukan pengiriman uang | Tidak | |
+| nominal | Berupa jumlah uang yang akan ditransfer ke akun MoneyZ user | Tidak | 0 |
+
+* Contoh 1
+
+POST		https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
+
+Parameter
+{
+     "idtujuan": "13",
+     "nominal": "5000"
+}
+
+Respon
+
+* Contoh 2
+
+POST		https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
+
+Parameter
+{
+    "idtujuan": "13",
+    "nominal": "5000"
+}
+
+Respon
+
+### balance
+
+* Method : `GET`
+* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/user/balance/:id
+* Parameter
+
+| Parameter | Description | Optional | Default | 
+| ----------- | ----------- | ----------- | ----------- |
+| id | Berupa nomor id internal yang menjadi identitas dari data terkait. perlu diisi apabila ingin melakukan perubahan atau penghapusan data terkait | Tidak | |
+
+* Contoh 1
+
+GET		https://moneyz-kelompok6.herokuapp.com/api/user/balance/:id
+
+Respon
+
+* Contoh 2
+
+GET	https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
+
+Respon
+
+### history
+
+* Method : `GET`
+* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/user/history/:id
+* Parameter
+
+| Parameter | Description | Optional | Default | 
+| ----------- | ----------- | ----------- | ----------- |
+| id | Berupa nomor id internal yang menjadi identitas dari data terkait | Tidak | |
+
+* Contoh 1
+
+GET		https://moneyz-kelompok6.herokuapp.com/api/user/history/12
+
+Respon
+
+* Contoh 2
+
+GET		https://moneyz-kelompok6.herokuapp.com/api/user/history/12
+
+Respon
+
 
 e-money-kelompok-6 created by GitHub Classroom
