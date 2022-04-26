@@ -55,6 +55,9 @@ Parameter
 ```
 Respon
 
+![responregister2.png](images/responregister2.PNG)
+
+
 ### login
 
 * Method : `POST`
@@ -80,6 +83,9 @@ Parameter
 ```
 Respon
 
+![responlogin1.png](images/responlogin1.PNG)
+
+
 * Contoh 2
 
 `POST` 	https://moneyz-kelompok6.herokuapp.com/api/login
@@ -94,6 +100,9 @@ Parameter
 
 Respon
 
+![responlogin2.png](images/responlogin2.PNG)
+
+
 ### getalluser
 
 * Method : `GET`
@@ -106,11 +115,17 @@ Respon
 
 Respon
 
+![respongetalluser1.png](images/respongetalluser1.PNG)
+
+
 * Contoh 2
 
 `GET`		https://moneyz-kelompok6.herokuapp.com/api/admin
 
 Respon
+
+![respongetalluser2.png](images/respongetalluser2.PNG)
+
 
 ### topup
 
@@ -136,6 +151,9 @@ Parameter
 
 Respon
 
+![respontopup1.png](images/respontopup1.PNG)
+
+
 * Contoh 2
 
 `POST`		https://moneyz-kelompok6.herokuapp.com/api/admin/topup/12
@@ -148,6 +166,9 @@ Parameter
 ```
 
 Respon
+
+![respontopup2.png](images/respontopup2.PNG)
+
 
 ### transfer
 
@@ -174,6 +195,9 @@ Parameter
 ```
 Respon
 
+![respontransfer1.png](images/respontransfer1.PNG)
+
+
 * Contoh 2
 
 `POST` 	https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
@@ -187,6 +211,9 @@ Parameter
 ```
 
 Respon
+
+![respontransfer2.png](images/respontransfer2.PNG)
+
 
 ### balance
 
@@ -204,11 +231,17 @@ Respon
 
 Respon
 
+![responbalance1.png](images/responbalance1.PNG)
+
+
 * Contoh 2
 
 `GET`	https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
 
 Respon
+
+![responbalance2.png](images/responbalance2.PNG)
+
 
 ### history
 
@@ -226,11 +259,17 @@ Respon
 
 Respon
 
+![responhistory1.png](images/responhistory1.PNG)
+
+
 * Contoh 2
 
 `GET`		https://moneyz-kelompok6.herokuapp.com/api/user/history/12
 
 Respon
+
+![responhistory2.png](images/responhistory2.PNG)
+
 
 
 e-money-kelompok-6 created by GitHub Classroom
