@@ -15,39 +15,44 @@ Dokumentasi API dari MoneyZ dapat diakses [di sini](https://docs.google.com/docu
   * Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/register
   * Parameter :
 
-| Parameter | Description |
-| ----------- | ----------- |
-| username | Berupa string dengan panjang min. 3 char dan tidak boleh sama dengan user lain |
-| email | Berupa string dan angka dengan panjang min. 8 char |
-| password | Berupa email user dengan format menggunakan @ dan belum pernah digunakan untuk register sebelumnya |
-| phone | Berupa nomor hp user dengan panjang max. 15 char dan belum pernah digunakan untuk register sebelumnnya |
+| Parameter | Description | Optional | Default | 
+| ----------- | ----------- | ----------- | ----------- |
+| username | Berupa string dengan panjang min. 3 char dan tidak boleh sama dengan user lain |  |  |
+| email | Berupa string dan angka dengan panjang min. 8 char |  |  |
+| password | Berupa email user dengan format menggunakan @ dan belum pernah digunakan untuk register sebelumnya |  |  |
+| phone | Berupa nomor hp user dengan panjang max. 15 char dan belum pernah digunakan untuk register sebelumnnya |  |  |
   
  * Contoh 1
 
-POST  https://moneyz-kelompok6.herokuapp.com/api/register
+`POST`  https://moneyz-kelompok6.herokuapp.com/api/register
 
 Parameter
+```
 {
     "username": "tesdokumentasi",
     "password": "tesdokumentasi123",
     "email": "tesdokumentasi@gmail.com",
     "phone": "08934238940"
 }
-
+```
 Respon
+
+![responregister1.png](images/responregister1.PNG)
+
 
  * Contoh 2
  
- POST	https://moneyz-kelompok6.herokuapp.com/api/register
+ `POST`	https://moneyz-kelompok6.herokuapp.com/api/register
 
 Parameter
+```
 {
     "username": "tesdokumentasi",
     "password": "tesdokumentasi123",
     "email": "tesdokumentasi@gmail.com",
     "phone": "08934238940"
 }
-
+```
 Respon
 
 ### login
@@ -56,33 +61,36 @@ Respon
 * Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/login
 * Parameter
 
-| Parameter | Description |
-| ----------- | ----------- |
-| username | Brupa string yang sudah terdaftar saat register |
-| password | Berupa string yang sudah terdaftar saat register |
+| Parameter | Description | Optional | Default | 
+| ----------- | ----------- | ----------- | ----------- |  
+| username | Brupa string yang sudah terdaftar saat register |  |  |
+| password | Berupa string yang sudah terdaftar saat register |  |  |
 
 * Contoh 1
 
 Contoh 1
-POST		https://moneyz-kelompok6.herokuapp.com/api/login
+`POST`		https://moneyz-kelompok6.herokuapp.com/api/login
 
 Parameter
+```
 {
     "username": "tesdokumentasi",
     "password": "tesdokumentasi123"
 }
-
+```
 Respon
 
 * Contoh 2
 
-POST		https://moneyz-kelompok6.herokuapp.com/api/login
+`POST` 	https://moneyz-kelompok6.herokuapp.com/api/login
 
 Parameter
+```
 {
     "username": "tesdokumentasi",
     "password": "tesdokumentasi1234"
 }
+```
 
 Respon
 
@@ -94,13 +102,13 @@ Respon
 
 * Contoh 1
 
-GET		https://moneyz-kelompok6.herokuapp.com/api/admin
+`GET`		https://moneyz-kelompok6.herokuapp.com/api/admin
 
 Respon
 
 * Contoh 2
 
-GET		https://moneyz-kelompok6.herokuapp.com/api/admin
+`GET`		https://moneyz-kelompok6.herokuapp.com/api/admin
 
 Respon
 
@@ -110,30 +118,34 @@ Respon
 * Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/admin/topup/:id
 * Parameter
 
-| Parameter | Description |
-| ----------- | ----------- |
-| id | Berupa nomor id internal yang menjadi identitas dari data terkait|
-| nominal | Berupa jumlah uang yang akan ditambahkan ke akun MoneyZ user|
+| Parameter | Description | Optional | Default | 
+| ----------- | ----------- | ----------- | ----------- |
+| id | Berupa nomor id internal yang menjadi identitas dari data terkait|  |  |
+| nominal | Berupa jumlah uang yang akan ditambahkan ke akun MoneyZ user|  |  |
 
 * Contoh 1
 
-POST		https://moneyz-kelompok6.herokuapp.com/api/admin/topup/12
+`POST`		https://moneyz-kelompok6.herokuapp.com/api/admin/topup/12
 
 Parameter
+```
 {
     "nominal": "10000"
 }
+```
 
 Respon
 
 * Contoh 2
 
-POST		https://moneyz-kelompok6.herokuapp.com/api/admin/topup/12
+`POST`		https://moneyz-kelompok6.herokuapp.com/api/admin/topup/12
 
 Parameter
+```
 {
     "nominal": "10000"
 }
+```
 
 Respon
 
@@ -151,25 +163,28 @@ Respon
 
 * Contoh 1
 
-POST		https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
+`POST`		https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
 
 Parameter
+```
 {
      "idtujuan": "13",
      "nominal": "5000"
 }
-
+```
 Respon
 
 * Contoh 2
 
-POST		https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
+`POST` 	https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
 
 Parameter
+```
 {
     "idtujuan": "13",
     "nominal": "5000"
 }
+```
 
 Respon
 
@@ -185,13 +200,13 @@ Respon
 
 * Contoh 1
 
-GET		https://moneyz-kelompok6.herokuapp.com/api/user/balance/:id
+`GET`		https://moneyz-kelompok6.herokuapp.com/api/user/balance/:id
 
 Respon
 
 * Contoh 2
 
-GET	https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
+`GET`	https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
 
 Respon
 
@@ -207,13 +222,13 @@ Respon
 
 * Contoh 1
 
-GET		https://moneyz-kelompok6.herokuapp.com/api/user/history/12
+`GET`		https://moneyz-kelompok6.herokuapp.com/api/user/history/12
 
 Respon
 
 * Contoh 2
 
-GET		https://moneyz-kelompok6.herokuapp.com/api/user/history/12
+`GET`		https://moneyz-kelompok6.herokuapp.com/api/user/history/12
 
 Respon
 
