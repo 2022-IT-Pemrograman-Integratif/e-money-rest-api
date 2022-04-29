@@ -39,15 +39,15 @@ Shafira Khaerunnisa Latif - 5027201072
 Parameter
 ```
 {
-    "username": "tesdokumentasi",
-    "password": "tesdokumentasi123",
-    "email": "tesdokumentasi@gmail.com",
-    "phone": "08934238940"
+    "username": "fordocumnentation",
+    "password": "fordocumentation123",
+    "email": "fordocumentation@gmail.com",
+    "phone": "08123456789"
 }
 ```
 Respon
 
-![responregister1.png](images/responregister1.PNG)
+![regis1](https://user-images.githubusercontent.com/90240714/165981603-d3fe860f-2759-4847-b0a9-454de610c5b0.JPG)
 
 
  * Contoh 2
@@ -57,15 +57,15 @@ Respon
 Parameter
 ```
 {
-    "username": "tesdokumentasi",
-    "password": "tesdokumentasi123",
-    "email": "tesdokumentasi@gmail.com",
-    "phone": "08934238940"
+    "username": "fordocumnentation",
+    "password": "fordocumentation123",
+    "email": "fordocumentation@gmail.com",
+    "phone": "08123456789"
 }
 ```
 Respon
 
-![responregister2.png](images/responregister2.PNG)
+![regis2](https://user-images.githubusercontent.com/90240714/165982063-e94005bf-8ea5-4a82-a53c-b5245a743d1f.JPG)
 
 
 ### login
@@ -88,13 +88,13 @@ Contoh 1
 Parameter
 ```
 {
-    "username": "tesdokumentasi",
-    "password": "tesdokumentasi123"
+    "username": "fordocumentation",
+    "password": "fordocumentation123"
 }
 ```
 Respon
 
-![responlogin1.png](images/responlogin1.PNG)
+![login1](https://user-images.githubusercontent.com/90240714/165982275-c52a4811-588a-4046-b1fc-037e756f84c8.JPG)
 
 
 * Contoh 2
@@ -111,7 +111,7 @@ Parameter
 
 Respon
 
-![responlogin2.png](images/responlogin2.PNG)
+![login2](https://user-images.githubusercontent.com/90240714/165982407-b1c271fb-32e3-43bc-b170-6b4df59905d7.JPG)
 
 
 ### getalluser
@@ -127,16 +127,15 @@ Respon
 
 Respon
 
-![respongetalluser1.png](images/respongetalluser1.PNG)
+![getalluser1](https://user-images.githubusercontent.com/90240714/165982772-cda11e0c-52c1-4737-9cb4-128690bedcbe.JPG)
 
-
-* Contoh 2
+* Contoh 2 (menggunakan autentikasi user)
 
 `GET`		https://moneyz-kelompok6.herokuapp.com/api/admin/
 
 Respon
 
-![respongetalluser2.png](images/respongetalluser2.PNG)
+![getalluser2](https://user-images.githubusercontent.com/90240714/165983187-5c8961f5-7a46-41f9-b62e-5c4309c88f37.JPG)
 
 
 ### topup
@@ -148,6 +147,7 @@ Respon
 
 | Parameter | Description | 
 | ----------- | ----------- | 
+| phone_user | Berupa nomor hp user yang akan ditambahkan saldonya | 
 | nominal | Berupa jumlah uang yang akan ditambahkan ke akun MoneyZ user|
 
 * Contoh 1
@@ -157,29 +157,31 @@ Respon
 Parameter
 ```
 {
-    "nominal": "10000"
+    "phone_user": "08123456789",
+    "nominal": "20000"
 }
 ```
 
 Respon
 
-![respontopup1.png](images/respontopup1.PNG)
+![topup1](https://user-images.githubusercontent.com/90240714/165984093-0a755980-9245-43b1-b7e9-6bbbc96dce5d.JPG)
 
 
-* Contoh 2
+* Contoh 2 (menggunakan autentikasi user)
 
 `POST`		https://moneyz-kelompok6.herokuapp.com/api/admin/topup
 
 Parameter
 ```
 {
-    "nominal": "10000"
+    "phone_user": "08123456789",
+    "nominal": "20000"
 }
 ```
 
 Respon
 
-![respontopup2.png](images/respontopup2.PNG)
+![topup2](https://user-images.githubusercontent.com/90240714/165984283-b23fe40d-c5e7-47c5-b2b9-999431317d9c.JPG)
 
 
 ### transfer
@@ -201,30 +203,30 @@ Respon
 Parameter
 ```
 {
-     "idtujuan": "13",
-     "nominal": "5000"
+    "nomortujuan": "089173612931",
+    "nominal": "10000"
 }
 ```
 Respon
 
-![respontransfer1.png](images/respontransfer1.PNG)
+![transfer1](https://user-images.githubusercontent.com/90240714/165984565-afea11b1-685b-48af-8394-5b565963ab57.JPG)
 
 
-* Contoh 2
+* Contoh 2 (jika saldo tidak mencukupi)
 
 `POST` 	https://moneyz-kelompok6.herokuapp.com/api/user/transfer
 
 Parameter
 ```
 {
-    "idtujuan": "13",
-    "nominal": "5000"
+    "nomortujuan": "089173612931",
+    "nominal": "20000"
 }
 ```
 
 Respon
 
-![respontransfer2.png](images/respontransfer2.PNG)
+![transfer2](https://user-images.githubusercontent.com/90240714/165984762-8768de00-e05c-4b41-977f-e6cf10948a35.JPG)
 
 
 ### balance
@@ -235,22 +237,13 @@ Respon
 * Parameter : -
 
 
-* Contoh 1
+* Contoh
 
 `GET`		https://moneyz-kelompok6.herokuapp.com/api/user/balance
 
 Respon
 
-![responbalance1.png](images/responbalance1.PNG)
-
-
-* Contoh 2
-
-`GET`	https://moneyz-kelompok6.herokuapp.com/api/user/balance
-
-Respon
-
-![responbalance2.png](images/responbalance2.PNG)
+![balance1](https://user-images.githubusercontent.com/90240714/165985054-68bdf0c5-e4cb-4f36-8852-3078a9a25916.JPG)
 
 
 ### history
@@ -260,22 +253,13 @@ Respon
 * Autentikasi : User
 * Parameter : -
 
-* Contoh 1
+* Contoh
 
 `GET`		https://moneyz-kelompok6.herokuapp.com/api/user/history
 
 Respon
 
-![responhistory1.png](images/responhistory1.PNG)
-
-
-* Contoh 2
-
-`GET`		https://moneyz-kelompok6.herokuapp.com/api/user/history
-
-Respon
-
-![responhistory2.png](images/responhistory2.PNG)
+![history](https://user-images.githubusercontent.com/90240714/165985714-93cc61db-bbfe-4912-9bff-1eaf1e7817b8.JPG)
 
 
 
