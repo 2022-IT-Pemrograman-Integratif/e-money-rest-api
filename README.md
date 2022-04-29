@@ -9,15 +9,15 @@ Shafira Khaerunnisa Latif - 5027201072
 
 ## Dokumentasi API:  
 
-| Endpoint | Akses | Deskripsi | 
+| Endpoint | Autentikasi | Deskripsi | 
 | ----------- | ----------- | ----------- | 
-| register | admin dan user | API untuk membuat akun baru agar dapat login  |  
-| login | admin dan user | API untuk masuk ke akun dan dapat mengakses MoneyZ |  
-| getalluser | admin | API untuk mengambil data semua user |  
-| topup | admin | API untuk mengupdate saldo  |  
-| transfer | admin | API untuk mengirim saldo ke user lain | 
-| balance | user | API untuk mengambil data jumlah saldo yang dimiliki secara real-time |  
-| history | user | API untuk mendapatkan riwayat dari seluruh transaksi yang telah dilakukan (top up, dan transfer antar teman) |  
+| register | Admin dan user | API untuk membuat akun baru agar dapat login  |  
+| login | Admin dan user | API untuk masuk ke akun dan dapat mengakses MoneyZ |  
+| getalluser | Admin | API untuk mengambil data semua user |  
+| topup | Admin | API untuk menambah saldo pada user  |  
+| transfer | User | API untuk mengirim saldo ke user lain | 
+| balance | User | API untuk mengambil data jumlah saldo yang dimiliki secara real-time |  
+| history | User | API untuk mendapatkan riwayat dari seluruh transaksi yang telah dilakukan (top up, dan transfer antar teman) |  
 
 ### register
   * Method : `POST`
@@ -25,12 +25,12 @@ Shafira Khaerunnisa Latif - 5027201072
   * Autentikasi : -
   * Parameter :
 
-| Parameter | Description | Optional | Default | 
-| ----------- | ----------- | ----------- | ----------- |
-| username | Berupa string dengan panjang min. 3 char dan tidak boleh sama dengan user lain |  |  |
-| email | Berupa email user dengan format menggunakan @ dan belum pernah digunakan untuk register sebelumnya |  |
-| password | Berupa string dan angka dengan panjang min. 8 char |  |  |
-| phone | Berupa nomor hp user dengan panjang max. 15 char dan belum pernah digunakan untuk register sebelumnnya |  |  |
+| Parameter | Description | 
+| ----------- | ----------- | 
+| username | Berupa string dan tidak boleh sama dengan user lain |
+| email | Berupa email user dengan format menggunakan @ dan belum pernah digunakan untuk register sebelumnya |
+| password | Bebas berupa string atau angka dan tidak ada ketentuan |
+| phone | Berupa nomor hp user dengan panjang max. 15 char dan belum pernah digunakan untuk register sebelumnnya |
   
  * Contoh 1
 
@@ -75,10 +75,10 @@ Respon
 * Autentikasi : -
 * Parameter
 
-| Parameter | Description | Optional | Default | 
-| ----------- | ----------- | ----------- | ----------- |  
-| phone | Brupa string nomor hp yang sudah terdaftar saat register |  |  |
-| password | Berupa string yang sudah terdaftar saat register |  |  |
+| Parameter | Description |  
+| ----------- | ----------- | 
+| phone | Berupa nomor hp yang sudah terdaftar saat register |
+| password | Berupa string yang sudah terdaftar saat register |
 
 * Contoh 1
 
@@ -123,7 +123,7 @@ Respon
 
 * Contoh 1
 
-`GET`		https://moneyz-kelompok6.herokuapp.com/api/admin
+`GET`		https://moneyz-kelompok6.herokuapp.com/api/admin/
 
 Respon
 
@@ -132,7 +132,7 @@ Respon
 
 * Contoh 2
 
-`GET`		https://moneyz-kelompok6.herokuapp.com/api/admin
+`GET`		https://moneyz-kelompok6.herokuapp.com/api/admin/
 
 Respon
 
@@ -146,9 +146,9 @@ Respon
 * Autentikasi : Admin
 * Parameter
 
-| Parameter | Description | Optional | Default | 
-| ----------- | ----------- | ----------- | ----------- |
-| nominal | Berupa jumlah uang yang akan ditambahkan ke akun MoneyZ user|  |  |
+| Parameter | Description | 
+| ----------- | ----------- | 
+| nominal | Berupa jumlah uang yang akan ditambahkan ke akun MoneyZ user|
 
 * Contoh 1
 
@@ -189,10 +189,10 @@ Respon
 * Autentikasi : User
 * Parameter
 
-| Parameter | Description | Optional | Default | 
-| ----------- | ----------- | ----------- | ----------- |
-| nomortujuan | Berupa nomor hp tujuan yang menjadi identitas dari data terkait. perlu diisi apabila ingin melakukan pengiriman uang | Tidak | |
-| nominal | Berupa jumlah uang yang akan ditransfer ke akun MoneyZ user | Tidak | 0 |
+| Parameter | Description | 
+| ----------- | ----------- | 
+| nomortujuan | Berupa nomor hp tujuan yang menjadi identitas dari data terkait. Perlu diisi apabila ingin melakukan pengiriman uang | 
+| nominal | Berupa jumlah uang yang akan ditransfer ke akun MoneyZ user | 
 
 * Contoh 1
 
@@ -237,7 +237,7 @@ Respon
 
 * Contoh 1
 
-`GET`		https://moneyz-kelompok6.herokuapp.com/api/user/balance/:id
+`GET`		https://moneyz-kelompok6.herokuapp.com/api/user/balance
 
 Respon
 
@@ -246,7 +246,7 @@ Respon
 
 * Contoh 2
 
-`GET`	https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
+`GET`	https://moneyz-kelompok6.herokuapp.com/api/user/balance
 
 Respon
 
