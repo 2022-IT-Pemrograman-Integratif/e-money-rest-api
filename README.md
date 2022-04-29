@@ -9,15 +9,15 @@ Shafira Khaerunnisa Latif - 5027201072
 
 ## Dokumentasi API:  
 
-| Endpoint | Akses | Deskripsi | Default | 
-| ----------- | ----------- | ----------- | ----------- |
-| register | admin dan user | API untuk membuat akun baru agar dapat login  |  |
-| login | admin dan user | API untuk masuk ke akun dan dapat mengakses MoneyZ |  |
-| getalluser | admin | API untuk mengambil data semua user |  |
-| topup | admin | API untuk mengupdate saldo  |  |
-| transfer | admin | API untuk mengirim saldo ke user lain |  |
-| balance | user | API untuk mengambil data jumlah saldo yang dimiliki secara real-time |  |
-| history | user | API untuk mendapatkan riwayat dari seluruh transaksi yang telah dilakukan (top up, dan transfer antar teman) |  |
+| Endpoint | Akses | Deskripsi | 
+| ----------- | ----------- | ----------- | 
+| register | admin dan user | API untuk membuat akun baru agar dapat login  |  
+| login | admin dan user | API untuk masuk ke akun dan dapat mengakses MoneyZ |  
+| getalluser | admin | API untuk mengambil data semua user |  
+| topup | admin | API untuk mengupdate saldo  |  
+| transfer | admin | API untuk mengirim saldo ke user lain | 
+| balance | user | API untuk mengambil data jumlah saldo yang dimiliki secara real-time |  
+| history | user | API untuk mendapatkan riwayat dari seluruh transaksi yang telah dilakukan (top up, dan transfer antar teman) |  
 
 ### register
   * Method : `POST`
