@@ -28,8 +28,8 @@ Shafira Khaerunnisa Latif - 5027201072
 | Parameter | Description | Optional | Default | 
 | ----------- | ----------- | ----------- | ----------- |
 | username | Berupa string dengan panjang min. 3 char dan tidak boleh sama dengan user lain |  |  |
-| email | Berupa string dan angka dengan panjang min. 8 char |  |  |
-| password | Berupa email user dengan format menggunakan @ dan belum pernah digunakan untuk register sebelumnya |  |  |
+| email | Berupa email user dengan format menggunakan @ dan belum pernah digunakan untuk register sebelumnya |  |
+| password | Berupa string dan angka dengan panjang min. 8 char |  |  |
 | phone | Berupa nomor hp user dengan panjang max. 15 char dan belum pernah digunakan untuk register sebelumnnya |  |  |
   
  * Contoh 1
