@@ -8,11 +8,11 @@ Shafira Khaerunnisa Latif - 5027201072
 ## Nama e-money: MoneyZ  
 
 ## Dokumentasi API:  
-Dokumentasi API dari MoneyZ dapat diakses [di sini](https://docs.google.com/document/d/1dvpENrrnmunwrTRknEkh9BjOmM7EPYgswFIaWEOweuI/edit?usp=sharing)
 
 ### register
   * Method : `POST`
   * Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/register
+  * Autentikasi : -
   * Parameter :
 
 | Parameter | Description | Optional | Default | 
@@ -62,11 +62,12 @@ Respon
 
 * Method : `POST`
 * Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/login
+* Autentikasi : -
 * Parameter
 
 | Parameter | Description | Optional | Default | 
 | ----------- | ----------- | ----------- | ----------- |  
-| username | Brupa string yang sudah terdaftar saat register |  |  |
+| phone | Brupa string nomor hp yang sudah terdaftar saat register |  |  |
 | password | Berupa string yang sudah terdaftar saat register |  |  |
 
 * Contoh 1
@@ -106,7 +107,8 @@ Respon
 ### getalluser
 
 * Method : `GET`
-* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/admin
+* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/admin/
+* Autentikasi : Admin
 * Parameter : -
 
 * Contoh 1
@@ -130,17 +132,17 @@ Respon
 ### topup
 
 * Method : `POST`
-* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/admin/topup/:id
+* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/admin/topup
+* Autentikasi : Admin
 * Parameter
 
 | Parameter | Description | Optional | Default | 
 | ----------- | ----------- | ----------- | ----------- |
-| id | Berupa nomor id internal yang menjadi identitas dari data terkait|  |  |
 | nominal | Berupa jumlah uang yang akan ditambahkan ke akun MoneyZ user|  |  |
 
 * Contoh 1
 
-`POST`		https://moneyz-kelompok6.herokuapp.com/api/admin/topup/12
+`POST`		https://moneyz-kelompok6.herokuapp.com/api/admin/topup
 
 Parameter
 ```
@@ -156,7 +158,7 @@ Respon
 
 * Contoh 2
 
-`POST`		https://moneyz-kelompok6.herokuapp.com/api/admin/topup/12
+`POST`		https://moneyz-kelompok6.herokuapp.com/api/admin/topup
 
 Parameter
 ```
@@ -173,18 +175,18 @@ Respon
 ### transfer
 
 * Method : `POST`
-* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/user/transfer/:id
+* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/user/transfer
+* Autentikasi : User
 * Parameter
 
 | Parameter | Description | Optional | Default | 
 | ----------- | ----------- | ----------- | ----------- |
-| id | Berupa nomor id internal yang menjadi identitas dari data terkait | Tidak | |
-| idtujuan | Berupa nomor id tujuan yang menjadi identitas dari data terkait. perlu diisi apabila ingin melakukan pengiriman uang | Tidak | |
+| nomortujuan | Berupa nomor hp tujuan yang menjadi identitas dari data terkait. perlu diisi apabila ingin melakukan pengiriman uang | Tidak | |
 | nominal | Berupa jumlah uang yang akan ditransfer ke akun MoneyZ user | Tidak | 0 |
 
 * Contoh 1
 
-`POST`		https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
+`POST`		https://moneyz-kelompok6.herokuapp.com/api/user/transfer
 
 Parameter
 ```
@@ -200,7 +202,7 @@ Respon
 
 * Contoh 2
 
-`POST` 	https://moneyz-kelompok6.herokuapp.com/api/user/transfer/12
+`POST` 	https://moneyz-kelompok6.herokuapp.com/api/user/transfer
 
 Parameter
 ```
@@ -218,12 +220,10 @@ Respon
 ### balance
 
 * Method : `GET`
-* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/user/balance/:id
-* Parameter
+* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/user/balance
+* Autentikasi : User
+* Parameter : -
 
-| Parameter | Description | Optional | Default | 
-| ----------- | ----------- | ----------- | ----------- |
-| id | Berupa nomor id internal yang menjadi identitas dari data terkait. perlu diisi apabila ingin melakukan perubahan atau penghapusan data terkait | Tidak | |
 
 * Contoh 1
 
@@ -246,16 +246,13 @@ Respon
 ### history
 
 * Method : `GET`
-* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/user/history/:id
-* Parameter
-
-| Parameter | Description | Optional | Default | 
-| ----------- | ----------- | ----------- | ----------- |
-| id | Berupa nomor id internal yang menjadi identitas dari data terkait | Tidak | |
+* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/user/history
+* Autentikasi : User
+* Parameter : -
 
 * Contoh 1
 
-`GET`		https://moneyz-kelompok6.herokuapp.com/api/user/history/12
+`GET`		https://moneyz-kelompok6.herokuapp.com/api/user/history
 
 Respon
 
@@ -264,7 +261,7 @@ Respon
 
 * Contoh 2
 
-`GET`		https://moneyz-kelompok6.herokuapp.com/api/user/history/12
+`GET`		https://moneyz-kelompok6.herokuapp.com/api/user/history
 
 Respon
 
