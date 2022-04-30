@@ -88,7 +88,7 @@ Contoh 1
 Parameter
 ```
 {
-    "username": "fordocumentation",
+    "phone": "08123456789",
     "password": "fordocumentation123"
 }
 ```
@@ -104,7 +104,7 @@ Respon
 Parameter
 ```
 {
-    "username": "tesdokumentasi",
+    "username": "08123456789",
     "password": "tesdokumentasi1234"
 }
 ```
