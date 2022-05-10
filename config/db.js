@@ -5,11 +5,11 @@ const mysql = require('mysql');
 
 const pool = mysql.createPool({
     connectionLimit: "10", // the number of connections node.js will hold open to our database
-    password: "ATQomgkExx",
-    user: "YAaJDba4I2",
-    database: "YAaJDba4I2",
-    host: "remotemysql.com",
-    port: "3306"
+    password: "",
+    user: process.env.DB_USER,
+    database: process.env.DB_DATABASE,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT
 
 });
 
@@ -101,9 +101,9 @@ db.deleteUser = (id) => {
     });
 };
 
-db.topupuser = (nominal, userId) => {
+db.topupuser = (nominal, phone) => {
     return new Promise((resolve, reject) => {
-        pool.query('UPDATE users SET balance = balance + ? WHERE id_user = ?', [nominal, userId], (error) => {
+        pool.query('UPDATE users SET balance = balance + ? WHERE phone = ?', [nominal, phone], (error) => {
             if (error) {
                 return reject(error);
             }
@@ -113,9 +113,9 @@ db.topupuser = (nominal, userId) => {
     });
 };
 
-db.deductpengirim = (nominal, idpengirim) => {
+db.deductpengirim = (nominal, phone_sender) => {
     return new Promise((resolve, reject) => {
-        pool.query('UPDATE users SET balance = balance - ? WHERE id_user = ?', [nominal, idpengirim], (error) => {
+        pool.query('UPDATE users SET balance = balance - ? WHERE phone = ?', [nominal, phone_sender], (error) => {
             if (error) {
                 return reject(error);
             }
@@ -125,9 +125,9 @@ db.deductpengirim = (nominal, idpengirim) => {
     });
 };
 
-db.addpenerima = (nominal, idpenerima) => {
+db.addpenerima = (nominal, nomorpenerima) => {
     return new Promise((resolve, reject) => {
-        pool.query('UPDATE users SET balance = balance + ? WHERE id_user = ?', [nominal, idpenerima], (error) => {
+        pool.query('UPDATE users SET balance = balance + ? WHERE phone = ?', [nominal, nomorpenerima], (error) => {
             if (error) {
                 return reject(error);
             }
@@ -137,9 +137,21 @@ db.addpenerima = (nominal, idpenerima) => {
     });
 };
 
-db.checkbalance = (userId) => {
+db.addbalanceadmin = (nominal, nomorpenerima) => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT balance FROM users WHERE id_user = ?', [userId], (error, balance) => {
+        pool.query('UPDATE users SET balance = balance + ? WHERE phone = ?', [nominal, nomorpenerima], (error) => {
+            if (error) {
+                return reject(error);
+            }
+
+            return resolve();
+        });
+    });
+};
+
+db.checkbalance = (phone) => {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT balance FROM users WHERE phone = ?', [phone], (error, balance) => {
             if (error) {
                 return reject(error);
             }
@@ -148,9 +160,9 @@ db.checkbalance = (userId) => {
     });
 };
 
-db.updateHistory = (type, nominal, userId, idpenerima) => {
+db.updateHistory = (type, nominal, phone_sender, phone_receiver, emoney) => {
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO history (type, amount, id_user, id_penerima) VALUES (?, ?, ?, ?)', [type, nominal, userId, idpenerima], (error) => {
+        pool.query('INSERT INTO history (type, amount, phone_sender, phone_receiver, emoney) VALUES (?, ?, ?, ?, ?)', [type, nominal, phone_sender, phone_receiver, emoney], (error) => {
             if (error) {
                 return reject(error);
             }
@@ -159,9 +171,9 @@ db.updateHistory = (type, nominal, userId, idpenerima) => {
     });
 };
 
-db.getHistory = (userId) => {
+db.getHistory = (phone, admin) => {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT type, id_penerima, amount, timestamp FROM history WHERE id_user = ? ', [userId], (error, history) => {
+        pool.query('SELECT type, phone_receiver, emoney, amount, timestamp FROM history WHERE phone_receiver = ? OR phone_sender = ? ', [phone, phone], (error, history) => {
             if (error) {
                 return reject(error);
             }

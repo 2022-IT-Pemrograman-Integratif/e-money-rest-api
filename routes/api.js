@@ -2,7 +2,7 @@ const express = require('express');
 const apiRouter = express.Router();
 
 const jsonwebtoken = require('jsonwebtoken');
-const db = require('./db');
+const db = require('../config/db');
 const {
     hashSync,
     genSaltSync,
@@ -31,7 +31,8 @@ apiRouter.post('/register', async (req, res, next) => {
         if (!username || !email || !password || !phone) {
             return res.sendStatus(400);
         } else if (checkUsername || checkEmail || checkPhone) {
-            return res.json({
+            return res.status(400).json({
+                status: "400",
                 message: "Username/email/phone has been taken"
             })
         }
@@ -39,23 +40,12 @@ apiRouter.post('/register', async (req, res, next) => {
         const salt = genSaltSync(10);
         password = hashSync(password, salt);
 
-        const user = await db.insertUser(username, email, password, phone);
+        //const user = await db.insertUser(username, email, password, phone);
+        await db.insertUser(username, email, password, phone);
 
-        const jsontoken = jsonwebtoken.sign({
-            user: user
-        }, "inibuatmaniez", {
-            expiresIn: '30m'
-        });
-
-        res.cookie('token', jsontoken, {
-            httpOnly: true,
-            secure: true,
-            expires: new Date(Number(new Date()) + 30 * 60 * 1000)
-        }); //we add secure: true, when using https.
-
-
-        res.json({
-            token: jsontoken
+        res.status(200).json({
+            status: "200",
+            message: "User created"
         });
 
         //return res.redirect('/mainpage');
@@ -66,18 +56,18 @@ apiRouter.post('/register', async (req, res, next) => {
     }
 });
 
-
-
-
 apiRouter.post('/login', async (req, res, next) => {
     try {
-        const username = req.body.username;
+        const jwtkey = process.env.JWTTOKEN
+
+        const phone = req.body.phone;
         const password = req.body.password;
-        user = await db.getUserByUsername(username);
+        user = await db.getUserByPhone(phone);
 
         if (!user) {
-            return res.json({
-                message: "Invalid Username or password"
+            return res.status(401).json({
+                status: "401",
+                message: "Invalid phone number or password"
             })
         }
 
@@ -86,23 +76,19 @@ apiRouter.post('/login', async (req, res, next) => {
             user.password = undefined;
             const jsontoken = jsonwebtoken.sign({
                 user: user
-            }, "inibuatmaniez", {
+            }, jwtkey, {
                 expiresIn: '30m'
             });
-            res.cookie('token', jsontoken, {
-                httpOnly: true,
-                secure: true,
-                expires: new Date(Number(new Date()) + 30 * 60 * 1000)
-            }); //we add secure: true, when using https.
 
-            res.json({
+            res.status(200).json({
+                status: "200",
                 token: jsontoken
             });
-            //return res.redirect('/mainpage') ;
 
         } else {
-            return res.json({
-                message: "Invalid Username or password"
+            return res.status(401).json({
+                status: "401",
+                message: "Invalid phone number or password"
             });
         }
 
@@ -120,14 +106,16 @@ async function verifyTokenAdmin(req, res, next) {
 
     if (token === undefined) {
 
-        return res.json({
+        return res.status(401).json({
+            status: "401",
             message: "Access Denied! Unauthorized User"
         });
     } else {
 
-        jsonwebtoken.verify(token, "inibuatmaniez", (err, authData) => {
+        jsonwebtoken.verify(token, jwtkey, (err, authData) => {
             if (err) {
-                res.json({
+                res.status(401).json({
+                    status: "401",
                     message: "Invalid Token..."
                 });
 
@@ -137,7 +125,8 @@ async function verifyTokenAdmin(req, res, next) {
                 if (role === "admin") {
                     next();
                 } else {
-                    return res.json({
+                    return res.status(403).json({
+                        status: "403",
                         message: "Access Denied!"
                     });
 
@@ -154,14 +143,16 @@ async function verifyToken(req, res, next) {
 
     if (token === undefined) {
 
-        return res.json({
+        return res.status(401).json({
+            status: "401",
             message: "Access Denied! Unauthorized User"
         });
     } else {
 
-        jsonwebtoken.verify(token, "inibuatmaniez", (err, authData) => {
+        jsonwebtoken.verify(token, jwtkey, (err, authData) => {
             if (err) {
-                res.json({
+                res.status(401).json({
+                    status: "401",
                     message: "Invalid Token..."
                 });
 
@@ -171,7 +162,8 @@ async function verifyToken(req, res, next) {
                 if (role === "user") {
                     next();
                 } else {
-                    return res.json({
+                    return res.status(403).json({
+                        status: "403",
                         message: "Access Denied!"
                     });
 

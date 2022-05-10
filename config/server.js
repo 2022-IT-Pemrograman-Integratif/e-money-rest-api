@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-const apiRouter = require('./api');
+const apiRouter = require('../routes/api');
 
 const app = express();
 
@@ -20,6 +20,7 @@ app.use('/api', apiRouter)
 
 app.listen(PORT, () => {
     console.log(`server is listening  on ${PORT}`);
+    console.log(process.env.JWTTOKEN);
 });
 
 module.exports = app;

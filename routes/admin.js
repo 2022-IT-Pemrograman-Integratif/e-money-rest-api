@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('./db');
+const db = require('../config/db');
 const adminrouter = express.Router();
 
 const {
@@ -20,17 +20,13 @@ adminrouter.param('userId', async (req, res, next, userId) => {
     }
 });
 
-
-
 adminrouter.get('/:userId', (req, res, next) => {
     res.status(200).json({
+        status: "200",
         user: req.user
     });
 
 });
-
-
-
 
 adminrouter.post('/', async (req, res, next) => {
     try {
@@ -49,7 +45,8 @@ adminrouter.post('/', async (req, res, next) => {
 
 
         const user = await db.insertUser(username, email, password);
-        res.json({
+        res.status(200).json({
+            status: "200",
             user: user
         });
 
@@ -59,9 +56,6 @@ adminrouter.post('/', async (req, res, next) => {
         res.sendStatus(400);
     }
 });
-
-
-
 
 adminrouter.put('/:id', async (req, res, next) => {
     try {
@@ -80,11 +74,11 @@ adminrouter.put('/:id', async (req, res, next) => {
         const salt = genSaltSync(10);
         password = hashSync(password, salt);
 
-
-
-        const user = await db.updateUser(username, role, email, password, userId, phone);
-        res.json({
-            message: "user updated"
+        // const user = await db.updateUser(username, role, email, password, userId, phone);
+        await db.updateUser(username, role, email, password, userId, phone);
+        res.status(200).json({
+            status: "200",
+            message: "User updated"
         });
 
 
@@ -99,7 +93,8 @@ adminrouter.put('/:id', async (req, res, next) => {
 adminrouter.delete('/:id', async (req, res, next) => {
     try {
         const userId = req.params.id
-        const user = await db.deleteUser(userId);
+        //const user = await db.deleteUser(userId);
+        await db.deleteUser(userId);
         return res.sendStatus(204);
 
     } catch (e) {
@@ -113,7 +108,8 @@ adminrouter.delete('/:id', async (req, res, next) => {
 adminrouter.get('/', async (req, res, next) => {
     try {
         const users = await db.allUser();
-        res.json({
+        res.status(200).json({
+            status: "200",
             users: users
         });
     } catch (e) {
@@ -121,23 +117,33 @@ adminrouter.get('/', async (req, res, next) => {
     }
 });
 
-adminrouter.post('/topup/:id', async (req, res, next) => {
+adminrouter.post('/topup', async (req, res, next) => {
     try {
         const nominal = req.body.nominal;
-        const userId = req.params.id
+        const phone_user = req.body.phone_user;
 
 
-        if (!nominal) {
+        if (!nominal || !phone_user) {
             return res.sendStatus(400);
         }
 
-        const balance = await db.topupuser(nominal, userId);
-        const updated = await db.updateHistory("topup", nominal, userId);
-        //res.json({
-        //    balance: balance
-        //});
-        res.json({
-            message: "top up success"
+        checkValidation = await db.getUserByPhone(phone_user);
+
+        if (!checkValidation) {
+            return res.status(404).json({
+                status: "404",
+                message: "Invalid phone number"
+            })
+        }
+
+        //const balance = await db.topupuser(nominal, phone_user);
+        await db.topupuser(nominal, phone_user);
+        //const updated = await db.updateHistory("topup", nominal, "admin", phone_user);
+        await db.updateHistory("topup", nominal, "admin", phone_user);
+
+        res.status(200).json({
+            status: "200",
+            message: "Top up success"
         });
 
 
