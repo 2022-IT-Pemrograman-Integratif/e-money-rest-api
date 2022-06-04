@@ -15,7 +15,8 @@ Shafira Khaerunnisa Latif - 5027201072
 | login | Admin dan user | API untuk masuk ke akun dan dapat mengakses MoneyZ |  
 | getalluser | Admin | API untuk mengambil data semua user |  
 | topup | Admin | API untuk menambah saldo pada user  |  
-| transfer | User | API untuk mengirim saldo ke user lain | 
+| transfer | User | API untuk mengirim saldo ke user lain sesama MoneyZ|  
+| transferTo | User | API untuk mengirim saldo ke user lain antar e-Money|  
 | balance | User | API untuk mengambil data jumlah saldo yang dimiliki secara real-time |  
 | history | User | API untuk mendapatkan riwayat dari seluruh transaksi yang telah dilakukan (top up, dan transfer antar teman) |  
 
@@ -227,6 +228,54 @@ Parameter
 Respon
 
 ![transfer2](https://user-images.githubusercontent.com/90240714/165984762-8768de00-e05c-4b41-977f-e6cf10948a35.JPG)
+
+
+### transferTo
+
+* Method : `POST`
+* Alamat URL : https://moneyz-kelompok6.herokuapp.com/api/user/transferTo
+* Autentikasi : User
+* Parameter
+
+| Parameter | Description | 
+| ----------- | ----------- | 
+| tujuan | Berupa nomor hp tujuan yang menjadi identitas dari data terkait. Perlu diisi apabila ingin melakukan pengiriman uang | 
+| nominal | Berupa jumlah uang yang akan ditransfer ke akun MoneyZ user | 
+| emoney | Berupa nama e-Money tujuan | 
+
+* Contoh 1
+
+`POST`		https://moneyz-kelompok6.herokuapp.com/api/user/transferTo
+
+Parameter
+```
+{
+    "nomortujuan": "089633064748",
+    "nominal": "10000",
+    "emoney": "PeacePay"
+}
+```
+Respon
+
+![transferto1](https://user-images.githubusercontent.com/90240714/171989120-51f6ddd2-44d7-499a-8283-8491dc939796.JPG)
+
+
+* Contoh 2 (jika nama e-Money tidak terdaftar)
+
+`POST` 	https://moneyz-kelompok6.herokuapp.com/api/user/transferTo
+
+Parameter
+```
+{
+    "nomortujuan": "089633064748",
+    "nominal": "10000",
+    "emoney": "ovo"
+}
+```
+
+Respon
+
+![transferto2](https://user-images.githubusercontent.com/90240714/171989135-875a072b-70e0-4fdc-af08-6c525ab44f42.JPG)
 
 
 ### balance
